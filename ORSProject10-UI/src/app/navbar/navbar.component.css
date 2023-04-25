@@ -1,0 +1,8 @@
+nav {
+    background-color: black;
+        position: relative;
+        width: 100%;
+}
+a{
+    cursor: pointer;
+}

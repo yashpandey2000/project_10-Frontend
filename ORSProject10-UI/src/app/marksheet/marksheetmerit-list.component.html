@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="padding-top: 3%;padding-bottom: 15%; background-image: linear-gradient( rgba(0, 0, 0, 0.300) ,  rgba(0, 0, 0, 0.300)), url(../../assets/files/sakura_flowers_petals_206544_1600x1200.jpg); background-repeat: no-repeat;
+background-position: center;
+   background-size: 1550px;
+   height:700px;
+  background-repeat: no-repeat;" >
+  <div class="container-fluid">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading" style="height: 50px;">
+        <div class="col-sm-12 pt-3"> 
+          <h4 class="text-center font-weight-bold" style="color: aliceblue;"><u>{{'Marksheet Merit List' | translate}}</u></h4>
+        </div>
+      </div>
+
+      <br>
+      <!-- <div style="margin-left: 87%;" class="pb-2">
+
+        <a href="" (click)="forward( '/jasperReport')" class="btn btn-lg btn-primary " role="button"  target="blank">
+          <span class="fa fa-print mr-1"></span>{{'Print' | translate}}</a>
+      </div> -->
+
+      <div class="p-1">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover table-light">
+            <thead class="thead-light text-uppercase">
+              <tr>
+              <th >{{'S.No' | translate}}</th>
+							<th >{{'RollNO' | translate}}  </th>
+							<th >{{'Name' | translate}}</th>
+							<th >{{'Physics' | translate}}</th>
+							<th >{{'Chemistry' | translate}}</th>
+							<th >{{'Maths' | translate}}</th>
+							<th >{{'Total' | translate}}</th>
+							<th >{{'Percentage(%)' | translate}}</th>
+						</tr>
+          </thead>
+
+          <tbody>
+						<tr *ngFor="let m of form.list; let i = index" >
+							<td>{{(form.pageNo*5)+i+ 1}} </td>
+							<td >{{m.rollNo}}</td>
+							<td >{{m.name}}</td>
+							<td >{{m.physics}}</td>
+              <td> {{m.chemistry}}</td>
+              <td> {{m.maths}}</td>
+              <td>{{m.physics+m.maths+m.chemistry}}</td>
+              <td>{{((m.physics+m.maths+m.chemistry)*100)/300 | number:'2.0-2' }}%</td>
+							
+						
+						</tr>
+          </tbody>
+          </table>
+      </div>
+
+      <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{form.message}}
+      </div>
+      <div *ngIf="!form.error && form.message != null" class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{form.message}}
+      </div>
+      <div class="p-1">
+        <div class="table-responsive">
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div><app-footer>
+  
+</app-footer>

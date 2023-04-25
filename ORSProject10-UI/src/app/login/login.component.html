@@ -1,0 +1,88 @@
+<app-navbar #one></app-navbar>
+
+<div class="row " style="padding-top: 5%; padding-bottom: 18%; background-image: linear-gradient( rgba(0, 0, 0, 0.610) ,  rgba(0, 0, 0, 0.610)), url(../../assets/files/17.jpg);
+  background-attachment: fixed;
+  background-size: cover;width:auto;
+    height: auto;">
+ 
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+
+    <div class="card bg-transparent">
+      <div class="card-body" style="background-color: rgba(65, 61, 61, 0.65)">
+        <form>
+          <h1 class="text-light text-center"><u>{{'Login' | translate}}</u></h1>
+          
+          <br>
+
+          <input type="hidden" name="loginUrl" [(ngModel)]="form.loginUrl" class="form-control">
+          
+          <div *ngIf="form.error && form.message == 'Invalid ID or Password'"
+            class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{form.message | translate}}
+          </div>
+          
+          <div *ngIf="form.error && form.message == 'You have Logged Out Successfully'"
+          class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{form.message | translate }}
+        </div>
+
+        <div *ngIf="form.error && form.message == 'Session Expired, Please Login Again'"
+          class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{form.message | translate}}
+        </div>
+          <div style="padding-top:3%">
+            <span class="pt-2"><font color="white"><b>{{'Email Id' | translate}}</b></font>
+              <span class="required-field"></span></span>
+
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-envelope grey-text"></i> </div>
+                </div>
+                <input type="text" name="loginId" [(ngModel)]="form.loginId" class="form-control"
+                  placeholder="{{'Enter Login Id' | translate}}">
+              </div>
+            </div>
+          </div>
+
+          <span class="alertRedColor">{{inputerror.loginId | translate}}</span>
+          <div style="padding-top:3%">
+            <span><font color="white"><b>{{'Password' | translate}}</b></font>
+              <span class="required-field"></span></span>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-key grey-text "></i> </div>
+                </div>
+                <input type="password" name="pwd" [(ngModel)]="form.password" class="form-control"
+                  placeholder="{{'Enter Password' | translate}}">
+              </div>
+            </div>
+            <span class="alertRedColor">{{inputerror.password | translate }}</span>
+          </div>
+
+          <br>
+
+          <div class="row pt-3 pl-3 pb-3">
+            <div class="pt-2">
+              <button (click)="signIn()" class="btn btn-md btn-success">
+                {{'Sign in' | translate}}</button>
+            </div>
+            <div class="pl-3 pt-2">
+              <a class="btn btn-warning" href="/forgotpassword">{{'Forgot Password' | translate}}</a>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<app-footer>
+
+</app-footer>

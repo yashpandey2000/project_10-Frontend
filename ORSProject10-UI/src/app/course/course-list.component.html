@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="padding-top: 3%;padding-bottom: 15%; background-image: linear-gradient( rgba(0, 0, 0, 0.300) ,  rgba(0, 0, 0, 0.300)), url(../../assets/files/sakura_flowers_petals_206544_1600x1200.jpg); background-repeat: no-repeat;
+background-position: center;
+   background-size: 1550px;
+   height:700px;
+  background-repeat: no-repeat;" >
+  <div class="container-fluid">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading" style="height: 50px;">
+        <div class="text-center">
+          <h1 class="text-info font-weight-bold">{{'Course List' | translate }}</h1>
+        </div>
+      </div>
+        <br>
+      <div class="row p-1" style="margin-left:17%">
+        <div class="col-sm-3">
+          <!-- <input type="text" class="form-control" [(ngModel)]="form.searchParams.courseName" placeholder="{{'Search Course Name' | translate }}"> -->
+          <select class="form-control" name="courseName" [(ngModel)]="form.searchParams.id" aria-label="ngSelected">
+            <option [ngValue]="" value="undefined">{{'Search course' | translate }}</option>
+                <option *ngFor="let obj of form.preload.courseList" [value]="obj.key">{{obj.value}}</option>
+              </select>
+        </div>
+        <div class="col-sm-3">
+          <!-- <input type="text" class="form-control" [(ngModel)]="form.searchParams.duration"
+            placeholder="{{'Search Duration' | translate }}"> -->
+            <select class="form-control" name="duration" [(ngModel)]="form.searchParams.id" aria-label="ngSelected">
+              <option [ngValue]="" value="undefined">{{'Search duration' | translate }}</option>
+                  <option *ngFor="let obj of form.preload.courseList" [value]="obj.key">{{obj.duration}}</option>
+                </select>
+        </div>
+        
+
+        <div class="col-sm-1">
+          <button (click)="submit()" class="btn btn-primary">
+            {{'Search' | translate }}</button>
+        </div>
+        <div class="pl-3">
+          <button (click)="forward('/course')" type="button" class="btn btn-success">{{'Add Course' | translate }}
+          </button>
+        </div>
+
+        <div class="col-sm-1">
+          <button (click)="deleteMany()" class="btn btn-danger">
+            {{'Delete'| translate}}</button>
+        </div>
+      </div>
+
+      <br>
+        
+      <div *ngIf="form.error" class="alert alert-danger alert-dismissible text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{form.message | translate}}
+      </div>
+      <div *ngIf="!form.error && form.message != null" class="alert alert-success alert-dismissible text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{form.message | translate }}
+      </div>
+
+
+      <div class="p-1">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover table-light">
+            <thead class="thead-light text-uppercase">
+              <tr>
+                <th><input type="checkbox" [(ngModel)]="isMasterSel" name="list_name" value="h1" (change)="checkUncheckAll($event)"/></th>
+                <th>{{'S.No' | translate }}</th>
+                <th>{{'Name' | translate }}</th>
+                <th>{{'Duration' | translate }}</th>
+                <th>{{'Description' | translate }}</th>
+                <th>#</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let m of form.list; let i = index">
+                <td> <input type="checkbox"  #checkboxes (change)="checkUnckeck()" name="list_name"  id="{{m.id}}" value="{{isMasterSel}}"/>
+                </td>
+                <td> {{(form.pageNo*5)+i+ 1}} </td>
+                <td> {{ m.name}} </td>
+                <td> {{ m.duration }} </td>
+                <td> {{ m.description }} </td>
+                <td>
+                  <a (click)="forward( '/course/' +  m.id)" style="cursor: pointer;">
+                    <i class="fa fa-edit text-info"></i>
+                  </a>
+                 
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+          <div class="row no-gutters ">
+            <div class="col-lg-1">
+                <button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info">{{'Previous' | translate }} </button>
+            </div>
+            <div class="col-lg-1 ml-auto text-right">
+                <button (click)="next()" [disabled]="nextList == 0" class="btn btn-info"> {{'Next' | translate }} </button>
+            </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<app-footer></app-footer>
