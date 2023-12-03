@@ -12,10 +12,7 @@ background-size: cover;width:auto;
         <form>
           <h2 *ngIf="!form.data.id>0" class="text-dark font-weight-bold text-center">{{'Add Subject' | translate}}</h2>
           <h2 *ngIf="form.data.id>0" class="text-dark font-weight-bold text-center">{{'Update Subject' | translate}}</h2>
-          <!-- <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{form.message | translate }}
-          </div> -->
+         
           <div *ngIf="!form.error && form.message != null" class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{form.message | translate }}
